@@ -1,14 +1,84 @@
-<h1>Ostatnio dodane słówka:</h1>
-<ul>
-  <li *ngFor="let lastWord of lastWords">
-    {{lastWord.word}}
-  </li>
-</ul>
+<!--<h1>Ostatnio dodane słówka:</h1>-->
+<!--<ul>-->
+  <!--<li >-->
+    <!--{{lastWord.word}}-->
+  <!--</li>-->
+<!--</ul>-->
 
-<h1>Trudne słówka:</h1>
-<ul>
-  <li *ngFor="let hardWord of hardWords">
-    {{hardWord.word}}
-  </li>
-</ul>
-<button (click)="resetHardWords()">Reset</button>
+<!--<h1>Trudne słówka:</h1>-->
+<!--<ul>-->
+  <!--<li *ngFor="let hardWord of hardWords">-->
+    <!--{{hardWord.word}}-->
+  <!--</li>-->
+<!--</ul>-->
+<!--<button (click)="resetHardWords()">Reset</button>-->
+
+
+
+<html>
+<head>
+  <!--<link rel="stylesheet" type="text/css" href="navigation_panel.css">-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <title>Strona główna</title>
+</head>
+<body>
+
+<div class="right-panel">
+
+  <div class="black-box upper-box">
+    <div class="box-title">Ucz się!</div>
+    <div class="upper-part">Ostatnio ćwiczyłeś słówka z kategorii <span class="fancy-text">JEDZENIE</span></div>
+    <div class="bottom-part">
+      <div class="black-box-text">Opanowałeś ją już w <b>58%</b></div>
+      <div class="black-box-text">Przejdź do tej kategorii, aby poprawić swój wynik</div>
+    </div>
+    <a class="fancy-button not-selectable" href="#">Przejdź do kategorii<i class="fas fa-play-circle"></i></a>
+  </div>
+
+  <div class="black-box bottom-box">
+    <div class="box-title">Słówko dnia</div>
+    <div class="upper-part"><span class="fancy-text">Pancake</span></div>
+    <div class="bottom-part">
+      <div class="black-box-photo"><img src="/assets/sample-photo.jpg"></div>
+      <div class="black-box-text">Naleśnik</div>
+    </div>
+    <a class="fancy-button not-selectable" href="#">Przejdź do słówka<i class="fas fa-play-circle"></i></a>
+  </div>
+
+</div>
+
+<div class="content">
+  <div class="top-panel">
+    <h1 class="main-page panel-title" style="margin: 0"><span class="small-letters-title">ad</span>DICT</h1>
+    <ul class="panel-actions"></ul>
+  </div>
+
+  <div class="statistics-container">
+    <div class="words-statistics">
+      <div class="last-added-block content-block">
+        <div class="box-title">Ostatnio dodane</div>
+        <ul class="list-of-words">
+          <li *ngFor="let lastWord of lastWords; let i = index"><a href="#" class="link-to-word">{{i+1}}. {{lastWord.word}}</a></li>
+        </ul>
+        <a class="fancy-button not-selectable" href="#">Ćwicz nowe słówka<i class="fas fa-play-circle"></i></a>
+      </div>
+
+      <div class="hard-words-block content-block">
+        <div class="box-title">Trudne słówka</div>
+        <ul class="list-of-words" >
+          <li *ngFor="let hardWord of hardWords; let i = index"><a href="#" class="link-to-word">{{i+1}}.  {{hardWord.word}}</a></li>
+        </ul>
+        <a class="fancy-button" (click)="resetHardWords()" style="cursor: pointer;">Zresetuj</a>
+      </div>
+    </div>
+
+    <div class="progress-block content-block">
+      <div class="box-title">Postępy w nauce</div>
+
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

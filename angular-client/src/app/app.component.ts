@@ -11,6 +11,8 @@ import { Category } from './model/category';
 export class AppComponent implements OnInit {
   public dataLoaded = false;
   public categories: Category[];
+  public addCategory = false;
+  public searchTerm = '';
 
   constructor(
     private categoryManager: CategoryManager,
@@ -24,4 +26,21 @@ export class AppComponent implements OnInit {
         this.dataLoaded = true;
       });
   }
+
+  public onKeyNewCategory(event) {
+    if (event.keyCode == 13) {
+      let newCategory = new Category();
+      newCategory.name = event.target.value;
+      let category = this.categoryManager.create(newCategory)
+      .then(category => {
+        this.appState.categories.push(category);
+        this.addCategory = false;
+      });
+    }
+  };
+
+  public onKeyCategorySearch(event) {
+    this.searchTerm = event.target.value
+  };
+
 }

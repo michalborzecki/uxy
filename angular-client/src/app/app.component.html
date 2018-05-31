@@ -1,11 +1,39 @@
-<ng-container *ngIf="dataLoaded">
-  <div>
-    <h1>Kategorie</h1>
-    <ul>
-      <li *ngFor="let category of categories">
-        {{category.name}}
-      </li>
-    </ul>
+<html>
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <title>Słówko</title>
+</head>
+<body>
+
+<div class="navigation-panel">
+  <a class="logo" [routerLink]="['/home/']"></a>
+  <a class="main-page-button not-selectable" href="#">Strona główna</a>
+  <div class="search-input">
+    <input type="text" class="main-search" placeholder="Szukaj słówka...">
+    <i class="fas fa-search search-icon"></i>
   </div>
-  <router-outlet></router-outlet>
-</ng-container>
+
+
+  <div class="categories-header"><span class="categories-header-text">Kategorie</span><i class="fas fa-plus add-icon" (click)="addCategory = !addCategory"></i></div>
+  <div *ngIf="addCategory" class="panel-item"><input (keyup)="onKeyNewCategory($event)" id='new-category-name' type="text" class="category-link category-search" placeholder="Wpisz nazwę kategorii"></div>
+
+  <div class="panel-item categories-item all-words-link clickable-menu-item"><a class="category-link" href="#">Wszystkie słówka</a></div>
+
+  <div class="panel-item"><input (keyup)="onKeyCategorySearch($event)" type="text" class="category-link category-search" placeholder="Znajdź kategorię..."></div>
+  <ng-container *ngIf="dataLoaded">
+    <ul class="categories">
+      <span *ngFor="let category of categories">
+        <li *ngIf="category.name.toLowerCase().includes(searchTerm.toLowerCase())" class="panel-item categories-item">
+          <a class="category-link" [routerLink]="['/category/' + category.id]"><span class="category-text">{{category.name}}</span><span class="number-of-words">{{category.words.length}}</span></a>
+        </li>
+      </span>
+    </ul>
+  </ng-container>
+
+  <div class="bottom-buttons">
+    <a class="bottom-button not-selectable" href="#">Konto</a><a class="bottom-button not-selectable" href="#">Wyloguj</a>
+  </div>
+
+</div>
+<router-outlet></router-outlet>
+</body>
