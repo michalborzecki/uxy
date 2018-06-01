@@ -25,7 +25,7 @@ module.exports = {
     {
       id: 1,
       word: 'Apple',
-      imageUrl: null,
+      imageUrl: "/assets/apple.jpg",
       creationTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
       learnedTime: null,
       categories: [2],
@@ -34,7 +34,7 @@ module.exports = {
     {
       id: 2,
       word: 'Banana',
-      imageUrl: null,
+      imageUrl: "/assets/banana.jpg",
       creationTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
       learnedTime: null,
       categories: [2],
@@ -43,7 +43,7 @@ module.exports = {
     {
       id: 3,
       word: 'Tangerine',
-      imageUrl: null,
+      imageUrl: "/assets/tangarine.jpg",
       creationTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
       learnedTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
       categories: [2],
@@ -52,7 +52,7 @@ module.exports = {
 	{
       id: 4,
       word: 'Apple Pie',
-      imageUrl: null,
+      imageUrl: "/assets/apple-pie.jpg",
       creationTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
       learnedTime: null,
       categories: [3],
@@ -61,7 +61,7 @@ module.exports = {
     {
       id: 5,
       word: 'Banana Pie',
-      imageUrl: null,
+      imageUrl: "/assets/banana-pie.jpg",
       creationTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
       learnedTime: null,
       categories: [3],
@@ -70,7 +70,7 @@ module.exports = {
     {
       id: 6,
       word: 'Tangerine Pie',
-      imageUrl: null,
+      imageUrl: "/assets/tangarine-pie.jpg",
       creationTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
       learnedTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
       categories: [3],

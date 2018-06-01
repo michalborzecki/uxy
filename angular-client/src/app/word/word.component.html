@@ -1,16 +1,76 @@
-<ng-container *ngIf="word">
-  <h1>{{word.word}}</h1>
-  <ul>
-    <li *ngFor="let translation of wordTranslations; let i = index">
-      {{i+1}}. {{translation.domain}}<br>
-      {{translation.word}} - {{translation.wordTranslation}}<br>
-      {{translation.example}} - {{translation.exampleTranslation}}
-    </li>
-  </ul>
-  <h2>Kategorie</h2>
-  <ul>
-    <li *ngFor="let category of wordCategories">
-      {{category.name}}
-    </li>
-  </ul>
-</ng-container>
+<html>
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <title>Słówko</title>
+</head>
+<body>
+
+<div class="right-panel">
+
+  <div class="black-box upper-box">
+    <div class="upper-part"><span class="fancy-text">Kategorie słówka</span><i (click)="addMode = !addMode" class="fas fa-plus add-icon"></i></div>
+
+    <div *ngIf="addMode" style="margin-top: 10px;">
+      <h4 style="font-family: 'Open Sans'; font-weight: lighter;font-size: 1em; letter-spacing: 1px; text-align: center; margin-bottom: 10px">
+        Wybierz kategorię do której chcesz zakwalifikować słówko
+      </h4>
+      <ul id="small-category" class="categories" style="margin-bottom: 10px">
+          <span *ngFor="let cat of appState.categories">
+            <li class="panel-item categories-item">
+              <a class="category-link" (click)="addCategory(cat)"><span class="category-text">{{cat.name}}</span></a>
+            </li>
+          </span>
+      </ul>
+    </div>
+
+    <div *ngIf="!addMode" class="bottom-part">
+      <ul class="categories" >
+        <li class="panel-item categories-item" *ngFor="let category of wordCategories">
+          <a class="category-link" [routerLink]="['/category/' + category.id]"><span class="category-text">{{category.name}}</span></a>
+          <i *ngIf="wordCategories.length > 1" (click)="onRemoveCategory(category)" class="far fa-trash-alt"></i>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+
+<div *ngIf="dataLoaded" class="content">
+  <div class="top-panel">
+    <h1 *ngIf="!editMode" class="panel-title editable">{{word.word}}
+      <i *ngIf="categoryId != 0" (click)="editMode = !editMode" class="fas fa-pencil-alt pencil-icon"></i>
+      <i (click)="deleteWord()"class="far fa-trash-alt"></i>
+    </h1>
+    <h1 *ngIf="editMode" class="panel-title editable">
+      <div *ngIf="editMode" class="search-input">
+        <input *ngIf="editMode" (keyup)="onUpdate($event)" type="text" class="main-search"
+               [ngModel]="word.word" style="height: 40px; font-size: 100%; margin: 0; padding: 0; font-family: AmaticSC-Bold">
+      </div>
+      <i (click)="deleteWord()" class="far fa-trash-alt"></i>
+    </h1>
+    <ul class="panel-actions"></ul>
+  </div>
+
+  <div class="word-content content-block">
+    <div class="word-photo">
+      <img src="{{word.imageUrl}}">
+    </div>
+    <div class="translations-header">Tłumaczenia<i class="fas fa-plus add-icon"></i></div>
+    <div class="word-descriptions">
+
+      <div class="word-translation editable" *ngFor="let translation of wordTranslations; let i = index">
+        <div class="translation-category">{{i+1}}. {{translation.domain}}<i class="fas fa-pencil-alt pencil-icon"></i><i class="far fa-trash-alt"></i></div>
+        <div class="original-word translation-header">{{translation.word}}</div>
+        <div class="translated-word translation-header">{{translation.wordTranslation}}</div>
+        <div class="original-word">{{translation.example}}</div>
+        <div class="translated-word">{{translation.exampleTranslation}}</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

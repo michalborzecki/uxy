@@ -33,7 +33,7 @@
     <!-- Header of the panel -->
     <h1 *ngIf="!editMode" class="panel-title editable" style="margin: 0;">
       {{category.name}}
-      <i (click)="editMode = !editMode" class="fas fa-pencil-alt pencil-icon"></i>
+      <i *ngIf="categoryId != 0" (click)="editMode = !editMode" class="fas fa-pencil-alt pencil-icon"></i>
       <i (click)="deleteCategory()" class="far fa-trash-alt"></i>
     </h1>
     <h1 *ngIf="editMode" class="panel-title editable" style="margin: 0;">
@@ -89,7 +89,7 @@
             <!--<div *ngIf="word.word.toLowerCase().includes(searchTerm.toLowerCase())">-->
             <div *ngIf="word.shouldBeDisplayed">
               <div class="word-header">
-                <a class="word-header-link" href="#">{{word.word}}</a>
+                <a class="word-header-link" [routerLink]="['/word/' + word.id]">{{word.word}}</a>
                 <label class="checkbox-container">
                   <input type="checkbox" [checked]="word.selected" (change)="selectWord(word)">
                   <span class="checkmark"></span>

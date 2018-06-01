@@ -12,19 +12,24 @@ import { HomeComponent } from './home/home.component';
 import { routing } from './app.routes';
 import { WordComponent } from './word/word.component';
 import { FormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import {ModalContentComponent} from "./modal-content.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoryComponent,
     HomeComponent,
-    WordComponent
+    WordComponent,
+    ModalContentComponent,
   ],
+  entryComponents: [ModalContentComponent],
   imports: [
     HttpModule,
     BrowserModule,
     routing,
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot(),
   ],
   providers: [
     CategoryManager,
