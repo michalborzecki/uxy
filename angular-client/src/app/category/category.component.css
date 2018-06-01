@@ -871,19 +871,23 @@
 }
 
 .letter-word-description .word-header {
-  position: relative;
+   position: relative;
 
-  padding: 2px 10px;
-  background-color: rgba(247,247,247,0.4);
+   padding: 2px 10px;
+   background-color: rgba(247,247,247,0.4);
 
-  font-size: 1.1em;
-  font-family: 'Open Sans BoldItalic';
+   font-size: 1.1em;
+   font-family: 'Open Sans BoldItalic';
 
 }
 
 .letter-word-description .word-header .word-header-link {
   text-decoration: none;
   color: #0d0d0d;
+}
+.letter-word-description .word-header .word-header-link:hover {
+  text-decoration: none;
+  color: #425CBB;
 
 }
 

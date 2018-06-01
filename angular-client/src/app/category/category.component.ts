@@ -145,7 +145,8 @@ export class CategoryComponent implements OnInit {
 
   };
 
-  public selectWord(word) {
+  public selectWord(event, word) {
+    event.stopPropagation()
     if (!word.selected) this.selectedWords += 1;
     else this.selectedWords -= 1;
     word.selected = !word.selected;
@@ -241,23 +242,25 @@ export class CategoryComponent implements OnInit {
         if (w.word.selected) {
           let wordToDelete = new Word();
           wordToDelete.id = w.word.id;
-          this.wordManager.delete(wordToDelete);
-          toDelete.push(w.index);
-        }
-      }
-      for (let index of toDelete) {
-        this.firstLetters[letter].words.splice(index, 1);
-        if (this.firstLetters[letter].words.length < 1) {
-          for (let l of this.letters) {
-            if (l.letter == this.firstLetters[letter].letter) l.hasWord = false;
-          }
+          this.wordManager.delete(wordToDelete)
+            .then(_ =>
+            {toDelete.push(w.index);}
+            ).then(_ => {
+              for (let index of toDelete) {
+                this.firstLetters[letter].words.splice(index, 1);
+                if (this.firstLetters[letter].words.length < 1) {
+                  for (let l of this.letters) {
+                    if (l.letter == this.firstLetters[letter].letter) l.hasWord = false;
+                  }
+                }
+              }
+              this.categoryManager.getAll()
+                .then(categories => {
+                  this.appState.categories = categories;
+                });
+            })
         }
       }
     }
-
-    this.categoryManager.getAll()
-    .then(categories => {
-      this.appState.categories = categories;
-    });
   }
 }

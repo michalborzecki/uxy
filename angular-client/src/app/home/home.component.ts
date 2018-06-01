@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   public lastWords: Word[];
   public hardWords: Word[];
   public categories: Category[];
+  public loadedData = false;
 
   constructor(
     private wordManager: WordManager,
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
     .then(([hard, last]) => {
       this.hardWords = hard;
       this.lastWords = last;
+      this.loadedData = true;
     });
   }
 

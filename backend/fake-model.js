@@ -3,7 +3,7 @@ module.exports = {
     {
       id: 1,
       name: 'Warzywa',
-      words: []
+      words: [2]
     },
     {
       id: 2,
@@ -37,7 +37,7 @@ module.exports = {
       imageUrl: "/assets/banana.jpg",
       creationTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
       learnedTime: null,
-      categories: [2],
+      categories: [2, 1],
       translations: [3],
     },
     {

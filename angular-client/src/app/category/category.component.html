@@ -19,7 +19,7 @@
       <div class="black-box-text">Wybierz słówka i przejdź do ćwiczeń, aby poprawić swój wynik</div>
     </div>
     <!-- Button with link to exercises -->
-    <a class="fancy-button not-selectable" href="#">Przejdź do ćwiczeń<i class="fas fa-play-circle"></i></a>
+    <a class="fancy-button not-selectable" [routerLink]="['/home/']">Przejdź do ćwiczeń<i class="fas fa-play-circle"></i></a>
   </div>
 
 </div>
@@ -91,7 +91,7 @@
               <div class="word-header">
                 <a class="word-header-link" [routerLink]="['/word/' + word.id]">{{word.word}}</a>
                 <label class="checkbox-container">
-                  <input type="checkbox" [checked]="word.selected" (change)="selectWord(word)">
+                  <input type="checkbox" [checked]="word.selected" (change)="selectWord($event, word)">
                   <span class="checkmark"></span>
                 </label>
               </div>

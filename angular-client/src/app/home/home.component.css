@@ -363,11 +363,11 @@
 }
 
 .right-panel .black-box.upper-box {
-  top: 177px; /* Same upper bound as Main Page button */
+  top: 50px; /* Same upper bound as Main Page button */
 }
 
 .right-panel .black-box.bottom-box {
-  top: 532px;
+  top: 405px;
 }
 
 .box-title {
