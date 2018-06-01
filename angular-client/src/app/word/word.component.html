@@ -63,7 +63,7 @@
       <div class="word-translation editable" *ngIf="wordAddMode">
         <div class="translation-category">
           <input type="text" [ngModel]="translationToAdd.domain">
-          <i class="fas fa-save save-icon"></i>
+          <i (click)="addTranslation()"class="fas fa-save save-icon"></i>
           <i (click)="wordAddMode = !wordAddMode" class="fas fa-arrow-alt-circle-left arrow-alt-circle-left-icon"></i>
         </div>
         <div class="original-word translation-header">
@@ -83,8 +83,8 @@
       <div *ngIf="!wordAddMode">
         <div class="word-translation editable" *ngFor="let translation of wordTranslations; let i = index">
           <div *ngIf="!translation.edit" class="translation-category">{{i+1}}. {{translation.domain}}
-            <i (click)="translation.edit = !translation.edit" class="fas fa-pencil-alt pencil-icon"></i>
-            <i class="far fa-trash-alt"></i></div>
+            <i *ngIf="!translationEditMode" (click)="translation.edit = !translation.edit; translationEditMode = !translationEditMode" class="fas fa-pencil-alt pencil-icon"></i>
+            <i (click)="deleteTranslation(translation)" class="far fa-trash-alt"></i></div>
           <div *ngIf="!translation.edit" class="original-word translation-header">{{translation.word}}</div>
           <div *ngIf="!translation.edit" class="translated-word translation-header">{{translation.wordTranslation}}</div>
           <div *ngIf="!translation.edit" class="original-word">{{translation.example}}</div>
@@ -92,21 +92,21 @@
 
           <!--editmode-->
           <div *ngIf="translation.edit" class="translation-category">
-            <input type="text" [ngModel]="translation.domain">
-            <i class="fas fa-save save-icon"></i>
-            <i (click)="translation.edit = !translation.edit" class="fas fa-arrow-alt-circle-left arrow-alt-circle-left-icon"></i>
+            <input id="domain" type="text" [ngModel]="translation.domain">
+            <i (click)="updateTranslation(translation)" class="fas fa-save save-icon"></i>
+            <i (click)="translation.edit = !translation.edit; translationEditMode = !translationEditMode" class="fas fa-arrow-alt-circle-left arrow-alt-circle-left-icon"></i>
           </div>
           <div *ngIf="translation.edit" class="original-word translation-header">
-            <input type="text" [ngModel]="translation.word">
+            <input id="word" type="text" [ngModel]="translation.word">
           </div>
           <div *ngIf="translation.edit" class="translated-word translation-header">
-            <input type="text" [ngModel]="translation.wordTranslation">
+            <input id="wordTranslation" type="text" [ngModel]="translation.wordTranslation">
           </div>
           <div *ngIf="translation.edit" class="original-word">
-            <textarea ref-textarea [(ngModel)]="translation.example" rows="4"></textarea>
+            <textarea id="example" ref-textarea [(ngModel)]="translation.example" rows="4"></textarea>
           </div>
           <div *ngIf="translation.edit" class="translated-word">
-            <textarea ref-textarea [(ngModel)]="translation.exampleTranslation" rows="4"></textarea>
+            <textarea id="exampleTranslation" ref-textarea [(ngModel)]="translation.exampleTranslation" rows="4"></textarea>
           </div>
         </div>
       </div>

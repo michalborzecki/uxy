@@ -38,14 +38,15 @@ export class AppComponent implements OnInit {
       newCategory.name = event.target.value;
       let category = this.categoryManager.create(newCategory)
       .then(category => {
-        this.appState.categories.push(category);
-        this.appState.categories = this.appState.categories.sort((a, b) => {
-          if (a.name < b.name) return -1;
-          else if (a.name > b.name) return 1;
-          else return 0;
-        });
+        this.appState.categories.push(category)
         this.addCategory = false;
-      });
+      }).then( _ => {
+          this.appState.categories = this.appState.categories.sort((a, b) => {
+            if (a.name < b.name) return -1;
+            else if (a.name > b.name) return 1;
+            else return 0;
+          });
+      })
     }
   };
 

@@ -25,6 +25,7 @@ export class WordComponent implements OnInit {
   public addMode = false;
   public wordAddMode = false;
   public translationToAdd = new WordTranslation();
+  public translationEditMode = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,6 +48,7 @@ export class WordComponent implements OnInit {
         this.dataLoaded = true;
         this.translationToAdd.domain = 'dziedzina';
         this.translationToAdd.word = 'słówko (polski)';
+        this.translationToAdd.wordId = word.id;
         this.translationToAdd.wordTranslation = 'tłumaczenie (angielski)';
         this.translationToAdd.example = 'przykładowe zdanie (polski)';
         this.translationToAdd.exampleTranslation = 'przykładowe zdanie (angielski)';
@@ -120,8 +122,6 @@ export class WordComponent implements OnInit {
     this.modalRef.content.body = "Czy na pewno chcesz usunąć słówko \"" + this.word.word + "\" z kategorii \"" + categoryToRemove.name + "\"?";
     this.modalRef.content.onReject = this.onDeleteReject;
     this.modalRef.content.onConfirm = this.onDeleteCategoryConfirm.bind(this, categoryToRemove);
-
-
   }
 
   public onDeleteCategoryConfirm(categoryToRemove) {
@@ -142,6 +142,47 @@ export class WordComponent implements OnInit {
           this.appState.categories = categories;
         });
     });
+  }
+
+  public addTranslation() {
+    this.wordTranslationManager.create(this.translationToAdd)
+      .then(translation => {
+        this.wordTranslations.push(translation);
+
+        console.log('po')
+        this.wordAddMode = !this.wordAddMode;
+      });
+  }
+
+
+  public updateTranslation(translation) {
+    translation.domain = (<HTMLInputElement>document.getElementById('domain')).value;
+    translation.word = (<HTMLInputElement>document.getElementById('word')).value;
+    translation.wordTranslation = (<HTMLInputElement>document.getElementById('wordTranslation')).value;
+    translation.example = (<HTMLInputElement>document.getElementById('example')).value;
+    translation.exampleTranslation = (<HTMLInputElement>document.getElementById('exampleTranslation')).value;
+    this.wordTranslationManager.update(translation);
+
+    this.translationEditMode = !this.translationEditMode;
+    translation.edit = false;
+  }
+
+  public deleteTranslation(translation) {
+    this.modalRef = this.modalService.show(ModalContentComponent);
+    this.modalRef.content.title = "Uwaga!";
+    window.scrollTo(0, 0);
+    this.modalRef.content.body = "Czy na pewno chcesz usunąć tłumacznie \"" + translation.wordTranslation + "\" słówka \"" + this.word.word + "\"?";
+    this.modalRef.content.onReject = this.onDeleteReject;
+    this.modalRef.content.onConfirm = this.onDeleteTranslationConfirm.bind(this, translation);
+  }
+
+  public onDeleteTranslationConfirm(translation) {
+    let index = this.wordTranslations.indexOf(translation, 0);
+    if (index > -1) {
+      this.wordTranslations.splice(index, 1);
+    }
+    this.wordTranslationManager.delete(translation);
+    document.getElementById('modal-element').remove()
   }
 
 }
