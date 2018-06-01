@@ -26,6 +26,14 @@ export class WordManager {
       .then(ids => this.getAllUsingIds(ids));
   }
 
+  getAllWords(): Promise<Word[]> {
+    return this.http.get(Configuration.backendUrl + '/words')
+      .toPromise()
+      .then(response => response.json() as number[])
+      .then(ids => this.getAllUsingIds(ids));
+  }
+
+
   getAllUsingIds(ids: number[]): Promise<Word[]> {
     return Promise.all(ids.map(id =>
       this.http.get(Configuration.backendUrl + '/words/' + id)

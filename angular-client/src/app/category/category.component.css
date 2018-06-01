@@ -743,7 +743,7 @@
 /* Menu that shows up after the arrow button click */
 
 .select-words .select-words-menu {
-  display: none;  /* comment to show */
+  /*display: none;  !* comment to show *!*/
 
   position: absolute;
   width: inherit;
@@ -758,7 +758,7 @@
 .select-words .select-words-menu .menu-item {
   height: 20px;
   box-sizing: border-box;
-  padding: 0 5px;
+  /*padding: 0 5px;*/
 
   border-top: 1px solid #3C3C3C;
 

@@ -17,12 +17,12 @@
   <div class="categories-header"><span class="categories-header-text">Kategorie</span><i class="fas fa-plus add-icon" (click)="addCategory = !addCategory"></i></div>
   <div *ngIf="addCategory" class="panel-item"><input (keyup)="onKeyNewCategory($event)" id='new-category-name' type="text" class="category-link category-search" placeholder="Wpisz nazwę kategorii"></div>
 
-  <div class="panel-item categories-item all-words-link clickable-menu-item"><a class="category-link" href="#">Wszystkie słówka</a></div>
+  <div class="panel-item categories-item all-words-link clickable-menu-item"><a class="category-link" [routerLink]="['/category/0']">Wszystkie słówka</a></div>
 
   <div class="panel-item"><input (keyup)="onKeyCategorySearch($event)" type="text" class="category-link category-search" placeholder="Znajdź kategorię..."></div>
   <ng-container *ngIf="dataLoaded">
     <ul class="categories">
-      <span *ngFor="let category of categories">
+      <span *ngFor="let category of appState.categories">
         <li *ngIf="category.name.toLowerCase().includes(searchTerm.toLowerCase())" class="panel-item categories-item">
           <a class="category-link" [routerLink]="['/category/' + category.id]"><span class="category-text">{{category.name}}</span><span class="number-of-words">{{category.words.length}}</span></a>
         </li>

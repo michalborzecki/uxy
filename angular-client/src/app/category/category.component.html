@@ -31,11 +31,22 @@
   <!-- The upper functional panel -->
   <div class="top-panel">
     <!-- Header of the panel -->
-    <h1 class="panel-title editable" style="margin: 0;">{{category.name}}<i class="fas fa-pencil-alt pencil-icon"></i> <i class="far fa-trash-alt"></i></h1>
-    <!-- List of actions (delete, add) in form of a menu -->
+    <h1 *ngIf="!editMode" class="panel-title editable" style="margin: 0;">
+      {{category.name}}
+      <i (click)="editMode = !editMode" class="fas fa-pencil-alt pencil-icon"></i>
+      <i (click)="deleteCategory()" class="far fa-trash-alt"></i>
+    </h1>
+    <h1 *ngIf="editMode" class="panel-title editable" style="margin: 0;">
+      <div *ngIf="editMode" class="search-input">
+      <input *ngIf="editMode" (keyup)="onUpdate($event)" type="text" class="main-search"
+             [ngModel]="category.name" style="height: 40px; font-size: 100%; margin: 0; font-family: AmaticSC-Bold">
+      </div>
+      <i (click)="deleteCategory()" class="far fa-trash-alt"></i>
+    </h1>
+
     <ul class="panel-actions">
       <li class="content-panel-item">Dodaj słówka</li>
-      <li class="content-panel-item">Usuń słówka</li>
+      <li class="content-panel-item" (click)="deleteWords()">Usuń słówka</li>
     </ul>
 
 
@@ -48,17 +59,20 @@
     </ul>
 
     <div class="search-input">
-      <input (keyup)="onSearch($event)" tpe="text" class="main-search" placeholder="Szukaj słówka w kategorii...">
+      <input (keyup)="onSearch($event)" tpe="text" class="main-search" placeholder="Szukaj słówka w kategorii..." id="search-word">
       <i class="fas fa-search search-icon"></i>
     </div>
 
     <div class="select-words">
-      <button class="select-words-text select-words-button">Wybierz wszystkie</button><button class="select-words-arrow select-words-button"></button>
-      <div class="number-of-selected-words">Wybrano: 100</div>
-      <ul class="select-words-menu">
-        <li class="menu-item ">Wybierz wszystkie</li>
-        <li class="menu-item">Wybierz trudne</li>
+      <button (click)="selectBox = !selectBox" class="select-words-text select-words-button">{{chosenOption.text}}</button>
+      <button (click)="selectBox = !selectBox" class="select-words-arrow select-words-button"></button>
+      <ul *ngIf="selectBox" class="select-words-menu" style="margin: 0">
+        <li class="menu-item" (click)="chooseOption(allWordsOption)" style="text-align: center;">{{allWordsOption.text}}</li>
+        <li class="menu-item" (click)="chooseOption(hardWordsOption)" style="text-align: center;">{{hardWordsOption.text}}</li>
       </ul>
+      <div *ngIf="!selectBox" class="number-of-selected-words">Wybrano: {{selectedWords}}</div>
+
+
     </div>
 
   </div>
@@ -66,17 +80,18 @@
   <ng-container *ngIf="dataLoaded" >
     <div *ngFor="let letter of firstLetters">
       <div *ngIf="letter.words.length > 0" class="content-block categories-content">
-        <div class="letter-category">
+        <div *ngIf="letter.shouldBeDisplayed" class="letter-category">
              <!--*ngIf="searchTerm.length == 0 || letter.letter.toLowerCase().startsWith(searchTerm[0].toLowerCase())">-->
 
           <div id="letter-{{letter.letter}}" class="letter-header">{{letter.letter.toUpperCase()}}</div>
 
           <div class="letter-word-description" *ngFor="let word of letter.words">
-            <div *ngIf="word.word.toLowerCase().includes(searchTerm.toLowerCase())">
+            <!--<div *ngIf="word.word.toLowerCase().includes(searchTerm.toLowerCase())">-->
+            <div *ngIf="word.shouldBeDisplayed">
               <div class="word-header">
                 <a class="word-header-link" href="#">{{word.word}}</a>
                 <label class="checkbox-container">
-                  <input type="checkbox" checked="checked">
+                  <input type="checkbox" [checked]="word.selected" (change)="selectWord(word)">
                   <span class="checkmark"></span>
                 </label>
               </div>

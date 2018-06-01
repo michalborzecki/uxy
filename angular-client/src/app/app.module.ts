@@ -11,6 +11,7 @@ import { CategoryComponent } from './category/category.component';
 import { HomeComponent } from './home/home.component';
 import { routing } from './app.routes';
 import { WordComponent } from './word/word.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { WordComponent } from './word/word.component';
   imports: [
     HttpModule,
     BrowserModule,
-    routing
+    routing,
+    FormsModule
   ],
   providers: [
     CategoryManager,
