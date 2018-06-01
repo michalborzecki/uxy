@@ -8,7 +8,7 @@ module.exports = {
     {
       id: 2,
       name: 'Owoce',
-      words: [1, 2, 3]
+      words: [1, 2, 3, 7, 8, 9, 10]
     },
     {
       id: 3,
@@ -76,6 +76,42 @@ module.exports = {
       categories: [3],
       translations: [7],
     },
+    {
+      id: 7,
+      word: 'Raspberry',
+      imageUrl: "/assets/raspberry.jpg",
+      creationTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
+      learnedTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
+      categories: [2],
+      translations: [8],
+    },
+    {
+      id: 8,
+      word: 'Strawberry',
+      imageUrl: "/assets/strawberry.jpg",
+      creationTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
+      learnedTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
+      categories: [2],
+      translations: [9],
+    },
+    {
+      id: 9,
+      word: 'Pear',
+      imageUrl: "/assets/pear.jpg",
+      creationTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
+      learnedTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
+      categories: [2],
+      translations: [10],
+    },
+    {
+      id: 10,
+      word: 'Watermelon',
+      imageUrl: "/assets/watermelon.jpg",
+      creationTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
+      learnedTime: "Sun May 20 2018 00:33:30 GMT+0200 (CEST)",
+      categories: [2],
+      translations: [11],
+    },
   ],
   wordTranslations: [
     {
@@ -118,7 +154,7 @@ module.exports = {
       id: 5,
       wordId: 1,
       domain: 'ogólniejsze',
-      word: 'apple',
+      word: 'apple pie',
       wordTranslation: 'jabłko2',
       example: 'inne zdanie z jabłkiem',
       exampleTranslation: 'Another sentence with apple.'
@@ -127,7 +163,7 @@ module.exports = {
       id: 6,
       wordId: 2,
       domain: 'ogólne',
-      word: 'banana',
+      word: 'banana pie',
       wordTranslation: 'banan',
       example: 'zdanie z bananem',
       exampleTranslation: 'Sentence with banana.'
@@ -136,10 +172,46 @@ module.exports = {
       id: 7,
       wordId: 3,
       domain: 'ogólne',
-      word: 'tangerine',
+      word: 'tangerine pie',
       wordTranslation: 'mandarynka',
       example: 'zdanie z mandarynką',
       exampleTranslation: 'Sentence with tangerine.'
+    },
+    {
+      id: 8,
+      wordId: 3,
+      domain: 'ogólne',
+      word: 'raspberry',
+      wordTranslation: 'mailna',
+      example: 'zdanie z maliną',
+      exampleTranslation: 'Sentence with raspberry.'
+    },
+    {
+      id: 9,
+      wordId: 3,
+      domain: 'ogólne',
+      word: 'strawberry',
+      wordTranslation: 'truskawka',
+      example: 'zdanie z truskawką',
+      exampleTranslation: 'Sentence with strawberry.'
+    },
+    {
+      id: 10,
+      wordId: 3,
+      domain: 'ogólne',
+      word: 'pear',
+      wordTranslation: 'gruszka',
+      example: 'zdanie z gruszką',
+      exampleTranslation: 'Sentence with pear.'
+    },
+    {
+      id: 11,
+      wordId: 3,
+      domain: 'ogólne',
+      word: 'watermelon',
+      wordTranslation: 'arbuz',
+      example: 'zdanie z arbuzem',
+      exampleTranslation: 'Sentence with watermelon.'
     },
   ]
 }

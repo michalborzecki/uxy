@@ -10,9 +10,12 @@ import { Component } from '@angular/core';
       </div>
     <div class="modal-body">
       <h4 [innerHtml]="body" style=" font-weight: lighter"></h4>
-      <div style="margin-top: 0">
+      <div *ngIf="yesno" style="margin-top: 0">
         <span class="option-button" (click)="onReject()">NIE</span>
         <span class="option-button" (click)="onConfirm()">TAK</span>
+      </div>
+      <div *ngIf="!yesno" style="margin-top: 0">
+        <span class="option-button" (click)="onOK()">OK</span>
       </div>
     </div>
     </div>
@@ -28,9 +31,11 @@ export class ModalContentComponent {
   public rejectLabel: string;
   public confirmLabel: string;
   public closeButtonLabel: string;
+  public yesno: Boolean = true;
 
   public onConfirm() {};
   public onReject() {};
+  public onOK() {};
   public onCloseButtonClick() {};
 }
 

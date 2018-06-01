@@ -215,7 +215,15 @@ export class CategoryComponent implements OnInit {
   };
 
   public deleteWords() {
-    if (this.selectedWords == 0) return;
+    if (this.selectedWords == 0) {
+      this.modalRef = this.modalService.show(ModalContentComponent);
+      this.modalRef.content.title = "Uwaga!";
+      window.scrollTo(0, 0)
+      this.modalRef.content.body = "Nie wybrałeś żadnych słówek.";
+      this.modalRef.content.yesno = false;
+      this.modalRef.content.onOK = this.onDeleteReject;
+      return;
+    }
 
     this.modalRef = this.modalService.show(ModalContentComponent);
     this.modalRef.content.title = "Uwaga!";

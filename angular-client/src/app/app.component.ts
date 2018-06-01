@@ -23,6 +23,11 @@ export class AppComponent implements OnInit {
     this.categoryManager.getAll()
       .then(categories => {
         this.appState.categories = this.categories = categories;
+        this.appState.categories = this.appState.categories.sort((a, b) => {
+          if (a.name < b.name) return -1;
+          else if (a.name > b.name) return 1;
+          else return 0;
+        });
         this.dataLoaded = true;
       });
   }
@@ -34,6 +39,11 @@ export class AppComponent implements OnInit {
       let category = this.categoryManager.create(newCategory)
       .then(category => {
         this.appState.categories.push(category);
+        this.appState.categories = this.appState.categories.sort((a, b) => {
+          if (a.name < b.name) return -1;
+          else if (a.name > b.name) return 1;
+          else return 0;
+        });
         this.addCategory = false;
       });
     }

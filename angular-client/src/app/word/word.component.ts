@@ -23,6 +23,8 @@ export class WordComponent implements OnInit {
   public editMode = false;
   public modalRef: BsModalRef;
   public addMode = false;
+  public wordAddMode = false;
+  public translationToAdd = new WordTranslation();
 
   constructor(
     private route: ActivatedRoute,
@@ -43,6 +45,11 @@ export class WordComponent implements OnInit {
       this.wordManager.getById(wordId).then((word) => {
         this.word = word;
         this.dataLoaded = true;
+        this.translationToAdd.domain = 'dziedzina';
+        this.translationToAdd.word = 'słówko (polski)';
+        this.translationToAdd.wordTranslation = 'tłumaczenie (angielski)';
+        this.translationToAdd.example = 'przykładowe zdanie (polski)';
+        this.translationToAdd.exampleTranslation = 'przykładowe zdanie (angielski)';
         this.wordCategories = this.appState.categories
           .filter(category => word.categories.indexOf(category.id) !== -1);
         this.wordTranslationManager.getAllForWord(word)
@@ -107,7 +114,19 @@ export class WordComponent implements OnInit {
   };
 
   public onRemoveCategory(categoryToRemove) {
-    console.log(this.wordCategories)
+    this.modalRef = this.modalService.show(ModalContentComponent);
+    this.modalRef.content.title = "Uwaga!";
+    window.scrollTo(0, 0);
+    this.modalRef.content.body = "Czy na pewno chcesz usunąć słówko \"" + this.word.word + "\" z kategorii \"" + categoryToRemove.name + "\"?";
+    this.modalRef.content.onReject = this.onDeleteReject;
+    this.modalRef.content.onConfirm = this.onDeleteCategoryConfirm.bind(this, categoryToRemove);
+
+
+  }
+
+  public onDeleteCategoryConfirm(categoryToRemove) {
+    document.getElementById('modal-element').remove()
+
     var index = this.wordCategories.indexOf(categoryToRemove, 0);
     if (index > -1) {
       this.wordCategories.splice(index, 1);
@@ -123,8 +142,6 @@ export class WordComponent implements OnInit {
           this.appState.categories = categories;
         });
     });
-    console.log(this.wordCategories)
-
   }
 
 }

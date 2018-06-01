@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.categories = this.appState.categories;
     Promise.all([
-      this.wordManager.getHardWords(10),
-      this.wordManager.getLastWords(10),
+      this.wordManager.getHardWords(5),
+      this.wordManager.getLastWords(5),
     ])
     .then(([hard, last]) => {
       this.hardWords = hard;

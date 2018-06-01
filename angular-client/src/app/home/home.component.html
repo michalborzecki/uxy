@@ -22,7 +22,7 @@
     <div class="box-title">Słówko dnia</div>
     <div class="upper-part"><span class="fancy-text">{{hardWords[0].word}}</span></div>
     <div class="bottom-part">
-      <div class="black-box-photo"><img src="/assets/sample-photo.jpg"></div>
+      <div class="black-box-photo"><img src="{{hardWords[0].imageUrl}}"></div>
       <!--<div class="black-box-text">Naleśnik</div>-->
     </div>
     <a class="fancy-button not-selectable" [routerLink]="['/word/' + hardWords[0].id]">Przejdź do słówka<i class="fas fa-play-circle"></i></a>
@@ -45,7 +45,7 @@
             <a [routerLink]="['/word/' + lastWord.id]" class="link-to-word">{{i+1}}. {{lastWord.word}}</a>
           </li>
         </ul>
-        <a class="fancy-button not-selectable" href="#">Ćwicz nowe słówka<i class="fas fa-play-circle"></i></a>
+        <a class="fancy-button not-selectable" [routerLink]="['/home/']">Ćwicz nowe słówka<i class="fas fa-play-circle"></i></a>
       </div>
 
       <div class="hard-words-block content-block">
