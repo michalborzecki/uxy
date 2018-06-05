@@ -1,0 +1,13 @@
+<div class="chart-container">
+  <div class="ct-chart categories-stats-chart">
+    <x-chartist [data]="chartData" [options]="chartOptions" [type]="'Bar'"></x-chartist>
+  </div>
+  <div class="chart-legend">
+    <h1>Legenda</h1>
+    <ul class="chart-legend-items">
+      <li class="series-b">Nowo opanowane w tym tygodniu słówka</li>
+      <li class="series-a">Słówka opanowane przed początkiem tego tygodnia</li>
+    </ul>
+  </div>
+  <div class="chart-footer">Top 5 kategorii</div>
+</div>

@@ -61,7 +61,7 @@
 
     <div class="progress-block content-block">
       <div class="box-title">Postępy w nauce</div>
-
+      <app-learn-chart *ngIf="appState.categoriesObservable | async" [categories]="appState.categoriesObservable | async"></app-learn-chart>
     </div>
 
   </div>

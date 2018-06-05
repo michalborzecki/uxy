@@ -1,1 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+.categories-stats-chart .ct-series line {
+  stroke-width: 35px;
+}
+
+.categories-stats-chart .ct-series-a line {
+  stroke: black;
+}
+
+.categories-stats-chart .ct-series-b line {
+  stroke: #425CBB;
+}
+
+.categories-stats-chart .ct-labels foreignObject {
+  text-align: center;
+  overflow: hidden !important;
+}
+
+.categories-stats-chart .ct-labels foreignObject:last-child .ct-vertical.ct-start {
+  margin-top: 5px;
+}
+
+.categories-stats-chart .ct-label.ct-vertical.ct-start {
+  text-align: right;
+  float: right;
+}
+.categories-stats-chart .ct-label.ct-vertical.ct-start::after { 
+  content: '';
+  display: block;
+  width: 100%;
+  border-right: 5px solid black;
+  height: 1px;
+  margin-top: -0.7em;
+  margin-left: 0.2em;
+}
+
+.categories-stats-chart .ct-label.ct-horizontal {
+  text-transform: uppercase;
+  font-size: 1em;
+  letter-spacing: 1px;
+}
+
+.categories-stats-chart .ct-grid.ct-horizontal:first-child, .ct-grid.ct-vertical {
+  stroke: black;
+}
+
+.categories-stats-chart .ct-grid.ct-vertical ~ .ct-grid.ct-vertical {
+  stroke: none;
+}
